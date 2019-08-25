@@ -18,8 +18,7 @@ input {
 .row .col {
   flex: 1;
 }
-.row .col:last-child {
-}
+
 /* Accordion styles */
 .tabs {
   border-radius: 8px;

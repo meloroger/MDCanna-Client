@@ -7,6 +7,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductsComponent } from './components/products/products.component';
+import { AddOrderComponent } from './components/orders/add-order/add-order.component';
+import { AddStockComponent } from './components/add-stock/add-stock.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +18,16 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+    /*  canActivate: [AuthGuard] */
+  },
+  {
+    path: 'add-order',
+    component: AddOrderComponent
+    /*  canActivate: [AuthGuard] */
+  },
+  {
+    path: 'add-stock',
+    component: AddStockComponent
     /*  canActivate: [AuthGuard] */
   },
   {

@@ -1,11 +1,20 @@
 <div>
   <div class="row">
     <div class="col">
+      <div id="main-btns">
+        <a [routerLink]="['/add-order']">
+          <button class="btn btn-success">Place Order</button>
+        </a>
+        <a [routerLink]="['/add-stock']">
+          <button class="btn btn-info">Add Stock</button>
+        </a>
+      </div>
       <div class="tabs">
         <div class="tab">
           <input type="radio" id="close" name="rd" />
           <label class=" tab-close" for="close">ORDERS</label>
         </div>
+
         <app-order></app-order>
         <!-- <app-order *ngFor="let order of orders" [order]="order">
         </app-order> -->

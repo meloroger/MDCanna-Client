@@ -1,0 +1,85 @@
+#our-product {
+  padding: 35px 0;
+}
+
+#our-product .top {
+  margin-bottom: 50px;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 10px 10px;
+  position: relative;
+  font-family: 'lato';
+  background: rgb(20, 17, 31);
+  text-align: center;
+  -webkit-box-shadow: -4px 2px 10px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -4px 2px 10px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: -4px 2px 10px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.card-img-top {
+  height: 250px;
+  background-repeat: no-repeat;
+  background-size: 115%;
+  background-position: 50% 50%;
+  -webkit-transition: background-size 0.275s ease-in-out;
+  transition: background-size 0.275s ease-in-out;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.card-1 {
+  background: url('../../../assets/bluedream.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+.card-2 {
+  background: url('../../../assets/GirlScoutCookies.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+.card-3 {
+  background: url('../../../assets/granddaddyPurps.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+
+.card-4 {
+  background: url('../../../assets/BubbaKush.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+.card-5 {
+  background: url('../../../assets/golden-goat.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+
+.card-6 {
+  background: url('../../../assets/granddaddyPurps.jpg');
+  background-size: 115%;
+  background-repeat: no-repeat;
+}
+
+.card-img-top:hover {
+  background-size: 100%;
+}
+
+.card img {
+  width: 110%;
+  height: 100%;
+}
+
+.card h4 {
+  font-weight: 700;
+}
+
+.card .card-text {
+  width: 80%;
+  margin: 0 auto;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
