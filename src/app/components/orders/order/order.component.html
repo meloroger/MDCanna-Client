@@ -1,0 +1,23 @@
+<div class="tab">
+  <input type="radio" id="rd1" name="rd" />
+  <label class="tab-label" for="rd1">Ordered {{ order.title }}</label>
+  <div class="tab-content">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Quantity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.userId }}</td>
+          <td>{{ order.completed ? 'Complete' : 'Pending' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
