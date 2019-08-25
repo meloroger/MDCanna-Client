@@ -8,6 +8,7 @@
           <th>ID</th>
           <th>Quantity</th>
           <th>Status</th>
+          <th>Delete</th>
         </tr>
       </thead>
 
@@ -16,6 +17,9 @@
           <td>{{ order.id }}</td>
           <td>{{ order.userId }}</td>
           <td>{{ order.completed ? 'Complete' : 'Pending' }}</td>
+          <td>
+            <a [routerLink]="['/dashboard']" (onClick)="onDeleteOrder()">X</a>
+          </td>
         </tr>
       </tbody>
     </table>

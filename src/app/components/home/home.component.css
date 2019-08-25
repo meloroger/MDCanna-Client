@@ -1,0 +1,9 @@
+#top-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#top-btns a {
+  width: 25vw;
+  color: #fff;
+}
