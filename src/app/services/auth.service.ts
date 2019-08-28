@@ -12,7 +12,9 @@ export class AuthService {
   user: User;
   isLoggedIn: boolean;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadToken();
+  }
 
   registerUser(user): Observable<User> {
     let headers = new HttpHeaders();
@@ -53,6 +55,10 @@ export class AuthService {
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  getToken() {
+    return this.authToken;
   }
 
   loggedIn() {

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     // Submit to backend for validation
     this.authService.authenticateUser(user).subscribe(data => {
       if (data.success) {
-        this.authService.storeUserData(data.token);
+        this.authService.storeUserData(data.auth_token);
         this.flashMessagesService.show('You are now logged in', {
           cssClass: 'alert-success',
           timeout: 5000

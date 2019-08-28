@@ -3,5 +3,5 @@ export class User {
   password: string;
   success: string;
   msg: string;
-  token: string;
+  auth_token: string;
 }

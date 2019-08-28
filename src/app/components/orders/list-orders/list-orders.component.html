@@ -15,9 +15,7 @@
           <label class=" tab-close" for="close">ORDERS</label>
         </div>
 
-        <app-order></app-order>
-        <!-- <app-order *ngFor="let order of orders" [order]="order">
-        </app-order> -->
+        <app-order *ngFor="let order of orders" [order]="order"> </app-order>
 
         <div class="tab">
           <input type="radio" id="close" name="rd" />
