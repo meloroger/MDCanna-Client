@@ -14,21 +14,21 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private flashMessagesService: FlashMessagesService
   ) {}
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 
   ngOnInit() {}
 
   onLoginSubmit() {
     const user = {
-      username: this.username,
+      email: this.username,
       password: this.password
     };
 
     // Submit to backend for validation
     this.authService.authenticateUser(user).subscribe(data => {
       if (data.success) {
-        this.authService.storeUserData(data.token, data.user);
+        this.authService.storeUserData(data.token);
         this.flashMessagesService.show('You are now logged in', {
           cssClass: 'alert-success',
           timeout: 5000

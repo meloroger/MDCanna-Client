@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  order: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  onDeleteOrder() {}
 }
