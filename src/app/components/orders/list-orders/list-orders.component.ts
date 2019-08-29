@@ -8,7 +8,7 @@ import { Order } from 'src/app/model/order.model';
   styleUrls: ['./list-orders.component.css']
 })
 export class ListOrdersComponent implements OnInit {
-  orders: any[];
+  orders: Order[];
 
   constructor(private orderService: OrderService) {}
 

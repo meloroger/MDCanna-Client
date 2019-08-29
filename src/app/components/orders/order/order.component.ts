@@ -7,9 +7,11 @@ import { Order } from 'src/app/model/order.model';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  @Input() order: any;
+  @Input() order: Order;
 
-  constructor() {}
+  constructor() {
+    console.log(this.order);
+  }
 
   ngOnInit() {}
 

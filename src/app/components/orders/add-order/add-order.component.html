@@ -2,14 +2,14 @@
 <form (submit)="onOrderSubmit()">
   <div class="form-group">
     <label>Product Name</label>
-    <select class="form-control">
+    <select class="form-control" [(ngModel)]="itemName" name="itemName">
       <option selected>Choose your Product</option>
-      <option value="1">Blue Dream</option>
-      <option value="2">Girl Scout Cookies</option>
-      <option value="3">Grand Daddy Purps</option>
-      <option value="3">Bubba Kush</option>
-      <option value="3">Golden Goat</option>
-      <option value="3">303 Kush</option>
+      <option value="Blue Dream">Blue Dream</option>
+      <option value="Girl Scout Cookies">Girl Scout Cookies</option>
+      <option value="Grand Daddy Purps">Grand Daddy Purps</option>
+      <option value="Bubba Kush">Bubba Kush</option>
+      <option value="Golden Goat">Golden Goat</option>
+      <option value="303 Kush">303 Kush</option>
     </select>
   </div>
   <div class="form-group">

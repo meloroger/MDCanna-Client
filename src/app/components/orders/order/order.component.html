@@ -1,6 +1,8 @@
 <div class="tab">
-  <input type="radio" id="rd1" name="rd" />
-  <label class="tab-label" for="rd1">Ordered {{ order.title }}</label>
+  <input type="radio" id="{{ order.id }}" name="rd" />
+  <label class="tab-label" for="{{ order.id }}"
+    >Ordered {{ order.userId }}</label
+  >
   <div class="tab-content">
     <table>
       <thead>
@@ -13,7 +15,7 @@
 
       <tbody>
         <tr>
-          <td>{{ order.userId }}</td>
+          <td>{{ order.quantity }}</td>
           <td>{{ order.completed ? 'Complete' : 'Pending' }}</td>
           <td>
             <a [routerLink]="['/dashboard']" (onClick)="onDeleteOrder()">X</a>
