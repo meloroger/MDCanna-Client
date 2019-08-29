@@ -34,4 +34,19 @@ export class UserService {
       this.getHeaders()
     );
   }
+
+  deleteUser() {
+    return this.http.delete<User>(
+      'http://localhost:8080/user/delete',
+      this.getHeaders()
+    );
+  }
+
+  updateUser(user) {
+    return this.http.put<User>(
+      'http://localhost:8080/user/update',
+      user,
+      this.getHeaders()
+    );
+  }
 }

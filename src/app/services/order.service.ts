@@ -45,4 +45,19 @@ export class OrderService {
       )
       .pipe();
   }
+
+  deleteOrder() {
+    return this.http.delete<Order>(
+      'http://localhost:8080/order/delete',
+      this.getHeaders()
+    );
+  }
+
+  updateOrder(order) {
+    return this.http.put<Order>(
+      'http://localhost:8080/order/update',
+      order,
+      this.getHeaders()
+    );
+  }
 }
