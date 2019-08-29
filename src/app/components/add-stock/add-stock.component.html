@@ -4,7 +4,10 @@
     <label>Product Name</label>
     <select class="form-control" [(ngModel)]="itemId" name="itemId">
       <option selected>Choose your Product</option>
-      <option value="Blue Dream">Blue Dream</option>
+      <option *ngFor="let item of items" value="{{ item.id }}">{{
+        item.name
+      }}</option>
+      <option value="Girl Scout Cookies"></option>
       <option value="Girl Scout Cookies">Girl Scout Cookies</option>
       <option value="Grand Daddy Purps">Grand Daddy Purps</option>
       <option value="Bubba Kush">Bubba Kush</option>

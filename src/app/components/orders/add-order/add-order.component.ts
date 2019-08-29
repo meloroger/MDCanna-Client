@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
+import { Item } from 'src/app/model/item.model';
 
 @Component({
   selector: 'app-add-order',
@@ -11,6 +12,7 @@ export class AddOrderComponent implements OnInit {
   quantity: number;
 
   constructor(private orderService: OrderService) {}
+  items: Item[];
 
   ngOnInit() {}
 

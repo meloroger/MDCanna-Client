@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { StockService } from '../../services/stock.service';
+import { Item } from 'src/app/model/item.model';
 
 @Component({
   selector: 'app-add-stock',
@@ -7,13 +8,13 @@ import { StockService } from '../../services/stock.service';
   styleUrls: ['./add-stock.component.css']
 })
 export class AddStockComponent implements OnInit {
+  items: Item[];
   itemId: string;
   quantity: number;
 
-  constructor(private stockService: StockService) { }
+  constructor(private stockService: StockService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onStockSubmit() {
     const stockMove = {
@@ -21,7 +22,6 @@ export class AddStockComponent implements OnInit {
       quantity: this.quantity
     };
 
-    this.stockService.createStockMovement();
+    this.stockService.createStockMovement(stockMove);
   }
-
 }

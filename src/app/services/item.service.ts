@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Item } from '../model/item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,10 @@ export class ItemService {
     return httpOptions;
   }
 
-  fetchAllItems(): Observable<any[]> {
-    return this.http.get<any[]>(
-      'http://localhost:8080/item/all',
-      this.getHeaders()
-    );
+  fetchAllItems(): Observable<Item[]> {
+    return this.http
+      .get<Item[]>('http://localhost:8080/item/all', this.getHeaders())
+      .pipe();
   }
 
   createItem(stockMovement) {
