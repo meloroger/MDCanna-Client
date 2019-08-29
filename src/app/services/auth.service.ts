@@ -16,30 +16,12 @@ export class AuthService {
     this.loadToken();
   }
 
-  registerUser(user): Observable<User> {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<User>('http://localhost:8080/user/register', user, {
-      headers
-    });
-  }
-
   authenticateUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post<User>('http://localhost:8080/user/login', user, {
       headers
     });
-  }
-
-  getProfile(): Observable<User> {
-    this.loadToken();
-    const httpOptions = {
-      headers: {
-        Authorization: this.authToken
-      }
-    };
-    return this.http.get<User>('users/profile', httpOptions);
   }
 
   // JWT by default looks for 'id_token' in local storage
