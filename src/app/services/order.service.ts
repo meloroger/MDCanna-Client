@@ -46,14 +46,15 @@ export class OrderService {
       .pipe();
   }
 
-  deleteOrder() {
+  deleteOrder(id): Observable<Order> {
     return this.http.delete<Order>(
-      'http://localhost:8080/order/delete',
+      `http://localhost:8080/order/delete/${id}`,
       this.getHeaders()
     );
   }
 
-  updateOrder(order) {
+  updateOrder(order): Observable<Order> {
+    console.log('orderService..');
     return this.http.put<Order>(
       'http://localhost:8080/order/update',
       order,

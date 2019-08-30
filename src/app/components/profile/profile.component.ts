@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,10 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   user: Object;
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
-    this.authService.getProfile().subscribe(
+    /* this.userService.getProfile().subscribe(
       profile => {
         // this.user = profile.user;
       },
@@ -20,6 +21,6 @@ export class ProfileComponent implements OnInit {
         console.log(err);
         return false;
       }
-    );
+    ); */
   }
 }

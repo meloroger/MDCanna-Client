@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/model/order.model';
+import { DeleteOrderComponent } from '../delete-order/delete-order.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-orders',
@@ -26,5 +28,24 @@ export class ListOrdersComponent implements OnInit {
         console.log(err.msg);
       }
     );
+  }
+
+  deleteOrder(id) {
+    this.orders = this.orders.filter(order => order.id !== id);
+
+    this.orderService.deleteOrder(id).subscribe();
+  }
+
+  updateOrder(updateOrder: Order) {
+    console.log('list-orders..', updateOrder);
+    this.orders.forEach(order => {
+      if (updateOrder.id === order.id) {
+        /** Todo add other fields for update */
+        order.itemId = updateOrder.itemId;
+        order.quantity = updateOrder.quantity;
+      }
+    });
+    console.log(this.orders);
+    this.orderService.updateOrder(updateOrder).subscribe();
   }
 }

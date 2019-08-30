@@ -3,11 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Item } from '../model/item.model';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
+  items: Item[];
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getHeaders(): { headers: HttpHeaders } {
@@ -22,8 +24,8 @@ export class ItemService {
 
   fetchAllItems(): Observable<Item[]> {
     return this.http
-      .get<Item[]>('http://localhost:8080/item/all', this.getHeaders())
-      .pipe();
+      .get<Item[]>('http://localhost:8080/items/all', this.getHeaders())
+      .pipe(tap(data => (this.items = data)));
   }
 
   createItem(stockMovement) {
@@ -53,5 +55,9 @@ export class ItemService {
       item,
       this.getHeaders()
     );
+  }
+
+  getItems() {
+    return this.items;
   }
 }

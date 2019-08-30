@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { User } from '../model/user.model';
 
@@ -16,12 +17,14 @@ export class AuthService {
     this.loadToken();
   }
 
-  authenticateUser(user) {
+  authenticateUser(user): Observable<User> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<User>('http://localhost:8080/user/login', user, {
-      headers
-    });
+    return this.http
+      .post<User>('http://localhost:8080/user/login', user, {
+        headers
+      })
+      .pipe(tap(data => (this.user = data)));
   }
 
   // JWT by default looks for 'id_token' in local storage

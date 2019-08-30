@@ -1,5 +1,5 @@
 <div class="tab">
-  <input type="radio" id="{{ order.id }}" name="rd" />
+  <input id="tab-input" type="radio" id="{{ order.id }}" name="rd" />
   <label class="tab-label" for="{{ order.id }}"
     >Ordered {{ order.userId }}</label
   >
@@ -10,6 +10,7 @@
           <th>Quantity</th>
           <th>Status</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -18,8 +19,23 @@
           <td>{{ order.quantity }}</td>
           <td>{{ order.completed ? 'Complete' : 'Pending' }}</td>
           <td>
-            <a [routerLink]="['/dashboard']" (onClick)="onDeleteOrder()"
-              >Delete</a
+            <a>
+              <button
+                class="btn btn-group-sm"
+                (click)="onDeleteOrder(order.id)"
+              >
+                Delete
+              </button></a
+            >
+          </td>
+          <td>
+            <a>
+              <button
+                class="btn btn-group-sm"
+                (click)="toggleUpdateOrder(order)"
+              >
+                Update
+              </button></a
             >
           </td>
         </tr>
@@ -27,3 +43,8 @@
     </table>
   </div>
 </div>
+<app-update-order
+  *ngIf="showUpdate"
+  [order]="order"
+  (updateOrder)="fwdUpdateOrder($event)"
+></app-update-order>

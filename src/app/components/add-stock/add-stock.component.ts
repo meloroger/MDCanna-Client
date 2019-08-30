@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { Item } from 'src/app/model/item.model';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-add-stock',
@@ -12,7 +13,12 @@ export class AddStockComponent implements OnInit {
   itemId: string;
   quantity: number;
 
-  constructor(private stockService: StockService) {}
+  constructor(
+    private stockService: StockService,
+    private itemService: ItemService
+  ) {
+    this.itemService.fetchAllItems().subscribe(data => (this.items = data));
+  }
 
   ngOnInit() {}
 
@@ -21,7 +27,7 @@ export class AddStockComponent implements OnInit {
       itemId: this.itemId,
       quantity: this.quantity
     };
-
-    this.stockService.createStockMovement(stockMove);
+    console.log(stockMove);
+    // this.stockService.createStockMovement(stockMove);
   }
 }
