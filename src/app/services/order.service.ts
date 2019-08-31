@@ -28,14 +28,14 @@ export class OrderService {
       .pipe();
   }
 
-  createOrder(order) {
+  createOrder(order: Order) {
     console.log('orderService fired off..');
     if (order !== undefined) {
       this.sendOrder(order).subscribe();
     }
   }
 
-  private sendOrder(order): Observable<Order> {
+  private sendOrder(order: Order): Observable<Order> {
     console.log('order sent', order);
     return this.http
       .post<Order>(
@@ -46,14 +46,14 @@ export class OrderService {
       .pipe();
   }
 
-  deleteOrder(id): Observable<Order> {
+  deleteOrder(id: string): Observable<Order> {
     return this.http.delete<Order>(
       `http://localhost:8080/order/delete/${id}`,
       this.getHeaders()
     );
   }
 
-  updateOrder(order): Observable<Order> {
+  updateOrder(order: Order): Observable<Order> {
     console.log('orderService..');
     return this.http.put<Order>(
       'http://localhost:8080/order/update',

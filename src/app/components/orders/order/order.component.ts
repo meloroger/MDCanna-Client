@@ -10,23 +10,32 @@ import { Router } from '@angular/router';
 })
 export class OrderComponent implements OnInit {
   @Input() order: Order;
-  @Output() deleteOrder: EventEmitter<Order> = new EventEmitter();
+  @Output() deleteOrder: EventEmitter<string> = new EventEmitter();
   @Output() passUpdateOrder: EventEmitter<Order> = new EventEmitter();
   showUpdate = false;
+  showStockMovements = false;
 
   constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit() {}
 
-  onDeleteOrder(id) {
+  onDeleteOrder(id: string) {
     this.deleteOrder.emit(id);
+  }
+
+  closeUpdateOrder() {
+    this.showUpdate = false;
   }
 
   toggleUpdateOrder() {
     this.showUpdate = !this.showUpdate;
   }
 
-  fwdUpdateOrder(order) {
+  toggleStockMovements() {
+    this.showStockMovements = !this.showStockMovements;
+  }
+
+  fwdUpdateOrder(order: Order) {
     console.log('order component..');
     this.passUpdateOrder.emit(order);
     this.showUpdate = false;

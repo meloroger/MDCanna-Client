@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteOrderComponent } from './delete-order.component';
+import { StockMovementsComponent } from './stock-movements.component';
 
-describe('DeleteOrderComponent', () => {
-  let component: DeleteOrderComponent;
-  let fixture: ComponentFixture<DeleteOrderComponent>;
+describe('StockMovementsComponent', () => {
+  let component: StockMovementsComponent;
+  let fixture: ComponentFixture<StockMovementsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteOrderComponent ]
+      declarations: [ StockMovementsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteOrderComponent);
+    fixture = TestBed.createComponent(StockMovementsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

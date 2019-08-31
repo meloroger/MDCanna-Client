@@ -9,6 +9,7 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./add-order.component.css']
 })
 export class AddOrderComponent implements OnInit {
+  id: string;
   itemId: string;
   quantity: number;
   items: Item[];
@@ -25,8 +26,11 @@ export class AddOrderComponent implements OnInit {
   onOrderSubmit() {
     console.log('createOrder fired off..');
     const order = {
+      id: '',
       itemId: this.itemId,
-      quantity: this.quantity
+      quantity: this.quantity,
+      complete: false,
+      stockMovements: []
     };
     console.log(order);
     this.orderService.createOrder(order);

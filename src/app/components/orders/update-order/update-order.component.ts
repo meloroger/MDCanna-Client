@@ -14,6 +14,7 @@ export class UpdateOrderComponent implements OnInit {
   items: Item[];
   itemId: string;
   quantity: number;
+  stockMovements: object[];
 
   constructor(private itemService: ItemService) {
     this.itemService.fetchAllItems().subscribe(data => (this.items = data));
@@ -25,7 +26,9 @@ export class UpdateOrderComponent implements OnInit {
     const order = {
       id: this.order.id,
       itemId: this.itemId,
-      quantity: this.quantity
+      quantity: this.quantity,
+      complete: false,
+      stockMovements: this.stockMovements
     };
 
     console.log(order);

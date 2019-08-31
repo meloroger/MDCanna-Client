@@ -21,8 +21,8 @@ import { AddOrderComponent } from './components/orders/add-order/add-order.compo
 import { OrderService } from './services/order.service';
 import { OrderComponent } from './components/orders/order/order.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
-import { DeleteOrderComponent } from './components/orders/delete-order/delete-order.component';
 import { UpdateOrderComponent } from './components/orders/update-order/update-order.component';
+import { StockMovementsComponent } from './components/orders/stock-movements/stock-movements.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { UpdateOrderComponent } from './components/orders/update-order/update-or
     AddOrderComponent,
     OrderComponent,
     AddStockComponent,
-    DeleteOrderComponent,
-    UpdateOrderComponent
+    UpdateOrderComponent,
+    StockMovementsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { StockMovement } from '../model/stock-movement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,20 +20,22 @@ export class StockService {
     return httpOptions;
   }
 
-  fetchAllStockMovements(): Observable<any[]> {
-    return this.http.get<any[]>(
+  fetchAllStockMovements(): Observable<StockMovement[]> {
+    return this.http.get<StockMovement[]>(
       'http://localhost:8080/stock/all',
       this.getHeaders()
     );
   }
 
-  createStockMovement(stockMovement) {
+  createStockMovement(stockMovement: StockMovement) {
     this.sendStockMovement(stockMovement).subscribe();
   }
 
-  private sendStockMovement(stockMovement): Observable<any> {
+  private sendStockMovement(
+    stockMovement: StockMovement
+  ): Observable<StockMovement> {
     return this.http
-      .post<any>(
+      .post<StockMovement>(
         'http://localhost:8080/stock/create',
         stockMovement,
         this.getHeaders()
@@ -41,14 +44,14 @@ export class StockService {
   }
 
   delteStockMovement() {
-    return this.http.delete<any>(
+    return this.http.delete<StockMovement>(
       'http://localhost:8080/stock/delete',
       this.getHeaders()
     );
   }
 
-  updateStockMovement(stockMovement) {
-    return this.http.put<any>(
+  updateStockMovement(stockMovement: StockMovement) {
+    return this.http.put<StockMovement>(
       'http://localhost:8080/stock/update',
       stockMovement,
       this.getHeaders()

@@ -1,7 +1,13 @@
 <div class="tab">
-  <input id="tab-input" type="radio" id="{{ order.id }}" name="rd" />
+  <input
+    id="tab-input"
+    type="radio"
+    id="{{ order.id }}"
+    name="rd"
+    (click)="closeUpdateOrder()"
+  />
   <label class="tab-label" for="{{ order.id }}"
-    >Ordered {{ order.userId }}</label
+    >Ordered by {{ order.userId }}</label
   >
   <div class="tab-content">
     <table>
@@ -10,31 +16,43 @@
           <th>Quantity</th>
           <th>Status</th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td>{{ order.quantity }}</td>
-          <td>{{ order.completed ? 'Complete' : 'Pending' }}</td>
           <td>
+            <ng-container *ngIf="order.complete">
+              <span class="badge badge-success">Complete</span>
+            </ng-container>
+            <ng-container *ngIf="!order.complete">
+              <span class="badge badge-danger">Pending</span>
+            </ng-container>
+          </td>
+          <td id="actionBtns">
             <a>
               <button
-                class="btn btn-group-sm"
+                class="btn btn-danger btn-sm"
                 (click)="onDeleteOrder(order.id)"
               >
                 Delete
               </button></a
             >
-          </td>
-          <td>
             <a>
               <button
-                class="btn btn-group-sm"
-                (click)="toggleUpdateOrder(order)"
+                class="btn btn-primary btn-sm"
+                (click)="toggleUpdateOrder()"
               >
-                Update
+                Toggle Update
+              </button></a
+            >
+            <a>
+              <button
+                class="btn btn-info btn-sm"
+                (click)="toggleStockMovements()"
+              >
+                Toggle Movements
               </button></a
             >
           </td>
@@ -48,3 +66,7 @@
   [order]="order"
   (updateOrder)="fwdUpdateOrder($event)"
 ></app-update-order>
+<app-stock-movements
+  *ngIf="showStockMovements"
+  [order]="order"
+></app-stock-movements>

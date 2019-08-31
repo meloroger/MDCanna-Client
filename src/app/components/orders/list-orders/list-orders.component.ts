@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/model/order.model';
-import { DeleteOrderComponent } from '../delete-order/delete-order.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-orders',
@@ -10,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list-orders.component.css']
 })
 export class ListOrdersComponent implements OnInit {
-  orders: Order[];
+  private orders: Order[];
 
   constructor(private orderService: OrderService) {}
 
@@ -30,7 +28,7 @@ export class ListOrdersComponent implements OnInit {
     );
   }
 
-  deleteOrder(id) {
+  deleteOrder(id: string) {
     this.orders = this.orders.filter(order => order.id !== id);
 
     this.orderService.deleteOrder(id).subscribe();
@@ -46,6 +44,10 @@ export class ListOrdersComponent implements OnInit {
       }
     });
     console.log(this.orders);
-    this.orderService.updateOrder(updateOrder).subscribe();
+    try {
+      this.orderService.updateOrder(updateOrder).subscribe();
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
