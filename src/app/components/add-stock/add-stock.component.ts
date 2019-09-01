@@ -28,6 +28,6 @@ export class AddStockComponent implements OnInit {
       quantity: this.quantity
     };
     console.log(stockMove);
-    // this.stockService.createStockMovement(stockMove);
+    this.stockService.createStockMovement(stockMove);
   }
 }

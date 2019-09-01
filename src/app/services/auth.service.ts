@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
+import { environment } from 'src/environments/environment';
 import { User } from '../model/user.model';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .post<User>('http://localhost:8080/user/login', user, {
+      .post<User>(`${environment.apiUrl}/user/login`, user, {
         headers
       })
       .pipe(tap(data => (this.user = data)));

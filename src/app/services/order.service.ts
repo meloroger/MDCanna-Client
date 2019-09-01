@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Order } from '../model/order.model';
 import { AuthService } from './auth.service';
 import { tap, subscribeOn } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class OrderService {
   getOrders(): Observable<Order[]> {
     console.log('getOrders fired off..');
     return this.http
-      .get<Order[]>('http://localhost:8080/order/all', this.getHeaders())
+      .get<Order[]>(`${environment.apiUrl}/order/all`, this.getHeaders())
       .pipe();
   }
 
@@ -39,7 +40,7 @@ export class OrderService {
     console.log('order sent', order);
     return this.http
       .post<Order>(
-        'http://localhost:8080/order/create',
+        `${environment.apiUrl}/order/create`,
         order,
         this.getHeaders()
       )
@@ -48,7 +49,7 @@ export class OrderService {
 
   deleteOrder(id: string): Observable<Order> {
     return this.http.delete<Order>(
-      `http://localhost:8080/order/delete/${id}`,
+      `${environment.apiUrl}/order/delete/${id}`,
       this.getHeaders()
     );
   }
@@ -56,7 +57,7 @@ export class OrderService {
   updateOrder(order: Order): Observable<Order> {
     console.log('orderService..');
     return this.http.put<Order>(
-      'http://localhost:8080/order/update',
+      `${environment.apiUrl}/order/update`,
       order,
       this.getHeaders()
     );

@@ -23,8 +23,9 @@ export class OrderComponent implements OnInit {
     this.deleteOrder.emit(id);
   }
 
-  closeUpdateOrder() {
+  closeExpanded() {
     this.showUpdate = false;
+    this.showStockMovements = false;
   }
 
   toggleUpdateOrder() {

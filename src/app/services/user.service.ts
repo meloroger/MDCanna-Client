@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,28 +24,28 @@ export class UserService {
   registerUser(user): Observable<User> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<User>('http://localhost:8080/user/register', user, {
+    return this.http.post<User>(`${environment.apiUrl}/user/register`, user, {
       headers
     });
   }
 
   getUsers(): Observable<User> {
     return this.http.get<User>(
-      'http://localhost:8080/user/all',
+      `${environment.apiUrl}/user/all`,
       this.getHeaders()
     );
   }
 
   deleteUser() {
     return this.http.delete<User>(
-      'http://localhost:8080/user/delete',
+      `${environment.apiUrl}/user/delete`,
       this.getHeaders()
     );
   }
 
   updateUser(user) {
     return this.http.put<User>(
-      'http://localhost:8080/user/update',
+      `${environment.apiUrl}/user/update`,
       user,
       this.getHeaders()
     );

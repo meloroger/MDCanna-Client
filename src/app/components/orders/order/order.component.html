@@ -4,7 +4,7 @@
     type="radio"
     id="{{ order.id }}"
     name="rd"
-    (click)="closeUpdateOrder()"
+    (click)="closeExpanded()"
   />
   <label class="tab-label" for="{{ order.id }}"
     >Ordered by {{ order.userId }}</label
@@ -39,7 +39,7 @@
                 Delete
               </button></a
             >
-            <a>
+            <a *ngIf="!order.complete">
               <button
                 class="btn btn-primary btn-sm"
                 (click)="toggleUpdateOrder()"

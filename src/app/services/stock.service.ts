@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { StockMovement } from '../model/stock-movement.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class StockService {
 
   fetchAllStockMovements(): Observable<StockMovement[]> {
     return this.http.get<StockMovement[]>(
-      'http://localhost:8080/stock/all',
+      `${environment.apiUrl}/stock/all`,
       this.getHeaders()
     );
   }
@@ -36,7 +37,7 @@ export class StockService {
   ): Observable<StockMovement> {
     return this.http
       .post<StockMovement>(
-        'http://localhost:8080/stock/create',
+        `${environment.apiUrl}/stock/create`,
         stockMovement,
         this.getHeaders()
       )
@@ -45,14 +46,14 @@ export class StockService {
 
   delteStockMovement() {
     return this.http.delete<StockMovement>(
-      'http://localhost:8080/stock/delete',
+      `${environment.apiUrl}/stock/delete`,
       this.getHeaders()
     );
   }
 
   updateStockMovement(stockMovement: StockMovement) {
     return this.http.put<StockMovement>(
-      'http://localhost:8080/stock/update',
+      `${environment.apiUrl}/stock/update`,
       stockMovement,
       this.getHeaders()
     );

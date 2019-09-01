@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Item } from '../model/item.model';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class ItemService {
 
   fetchAllItems(): Observable<Item[]> {
     return this.http
-      .get<Item[]>('http://localhost:8080/items/all', this.getHeaders())
+      .get<Item[]>(`${environment.apiUrl}/items/all`, this.getHeaders())
       .pipe(tap(data => (this.items = data)));
   }
 
@@ -35,7 +36,7 @@ export class ItemService {
   private sendItemToDb(stockMovement): Observable<any> {
     return this.http
       .post<any>(
-        'http://localhost:8080/item/create',
+        `${environment.apiUrl}/items/create`,
         stockMovement,
         this.getHeaders()
       )
@@ -44,14 +45,14 @@ export class ItemService {
 
   deleteItem(item) {
     return this.http.delete<any>(
-      'http://localhost:8080/item/delete',
+      `${environment.apiUrl}/items/delete`,
       this.getHeaders()
     );
   }
 
   updateItem(item) {
     return this.http.put<any>(
-      'http://localhost:8080/item/update',
+      `${environment.apiUrl}/items/update`,
       item,
       this.getHeaders()
     );
