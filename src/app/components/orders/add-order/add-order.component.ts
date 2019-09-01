@@ -26,6 +26,7 @@ export class AddOrderComponent implements OnInit {
   onOrderSubmit() {
     console.log('createOrder fired off..');
     const order = {
+      id: uuid.v4(),
       itemId: this.itemId,
       quantity: this.quantity,
       complete: false,

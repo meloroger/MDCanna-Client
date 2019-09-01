@@ -24,6 +24,7 @@ export class AddStockComponent implements OnInit {
 
   onStockSubmit() {
     const stockMove = {
+      id: uuid.v4(),
       itemId: this.itemId,
       quantity: this.quantity
     };
