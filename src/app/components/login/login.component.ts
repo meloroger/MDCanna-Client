@@ -21,16 +21,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  async onLoginSubmit() {
+  onLoginSubmit() {
     const user = {
       email: this.username,
       password: this.password
     };
 
-    const hashedUser = await this.userService.createUser(user).subscribe();
-
     // Submit to backend for validation
-    this.authService.authenticateUser(hashedUser).subscribe(data => {
+    this.authService.authenticateUser(user).subscribe(data => {
       if (data.success) {
         this.authService.storeUserData(data.auth_token);
         this.flashMessagesService.show('You are now logged in', {
