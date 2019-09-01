@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/item.service';
+import { uuid } from 'uuid';
 
 @Component({
   selector: 'app-add-stock',
