@@ -50,4 +50,12 @@ export class UserService {
       this.getHeaders()
     );
   }
+
+  createUser(user): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http
+      .post<User>('http://localhost:3000/config/create-user', user, { headers })
+      .pipe();
+  }
 }
