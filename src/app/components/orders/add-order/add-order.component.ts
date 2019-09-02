@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/item.service';
-import { uuid } from 'uuid';
+import { AuthService } from 'src/app/services/auth.service';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-add-order',
@@ -17,7 +18,8 @@ export class AddOrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private authService: AuthService
   ) {
     this.itemService.fetchAllItems().subscribe(data => (this.items = data));
   }
@@ -26,9 +28,13 @@ export class AddOrderComponent implements OnInit {
 
   onOrderSubmit() {
     console.log('createOrder fired off..');
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    console.log(user);
     const order = {
       id: uuid.v4(),
       itemId: this.itemId,
+      userId: user.id,
       quantity: this.quantity,
       complete: false,
       stockMovements: []

@@ -15,6 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.loadToken();
+    this.loadUser();
   }
 
   authenticateUser(user): Observable<User> {
@@ -28,12 +29,12 @@ export class AuthService {
   }
 
   // JWT by default looks for 'id_token' in local storage
-  storeUserData(token) {
+  storeUserData(token, user) {
     localStorage.setItem('id_token', token);
-    // localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('isLoggedIn', 'true');
     this.authToken = token;
-    // this.user = user;
+    this.user = user;
     this.isLoggedIn = true;
   }
 
