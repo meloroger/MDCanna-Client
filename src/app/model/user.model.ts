@@ -1,8 +1,9 @@
 export class User {
-  id: string;
+  id?: string;
+  fullName?: string;
   email: string;
   password: string;
-  success: string;
-  msg: string;
-  auth_token: string;
+  success?: string;
+  msg?: string;
+  token?: string;
 }

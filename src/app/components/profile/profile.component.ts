@@ -11,21 +11,35 @@ import { User } from 'src/app/model/user.model';
 })
 export class ProfileComponent implements OnInit {
   user: User;
-  private name: string;
-  private email: string;
-  private password: string;
+  fullName: string;
+  email: string;
+  password: string;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.user = this.authService.loadUser();
+    console.log(this.user);
+  }
 
   ngOnInit() {
     /*  Todo: create Path to call one user from database */
   }
 
-  onUpdateSubmit(user: User) {}
+  onUpdateSubmit() {
+    const user = {
+      fullName: this.fullName,
+      email: this.email,
+      password: this.password
+    };
+    this.userService.updateUser(user).subscribe();
+  }
 
-  onDeleteAccount() {}
+  onDeleteAccount() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.userService.deleteUser(user.id).subscribe();
+    this.authService.logout();
+  }
 }

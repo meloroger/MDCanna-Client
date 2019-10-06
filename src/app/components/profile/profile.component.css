@@ -1,3 +1,16 @@
 a {
   float: right;
 }
+
+.list-group {
+  text-align: -webkit-center;
+}
+
+li {
+  text-align: center;
+  max-width: 500px;
+}
+
+.page-header {
+  text-align: center;
+}

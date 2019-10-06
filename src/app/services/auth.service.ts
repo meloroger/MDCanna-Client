@@ -18,8 +18,8 @@ export class AuthService {
     this.loadUser();
   }
 
-  authenticateUser(user): Observable<User> {
-    let headers = new HttpHeaders();
+  authenticateUser(user: User): Observable<User> {
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
       .post<User>(`${environment.apiUrl}/user/login`, user, {
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   // JWT by default looks for 'id_token' in local storage
-  storeUserData(token, user) {
+  storeUserData(token: string, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('isLoggedIn', 'true');
@@ -38,8 +38,8 @@ export class AuthService {
     this.isLoggedIn = true;
   }
 
-  loadUser() {
-    return this.user;
+  loadUser(): User {
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   loadToken() {
@@ -59,9 +59,13 @@ export class AuthService {
   }
 
   logout() {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this.authToken);
     this.authToken = null;
     this.user = null;
     this.isLoggedIn = false;
     localStorage.clear();
+    return this.http.post(`${environment.apiUrl}/user/logout`, { headers });
   }
 }

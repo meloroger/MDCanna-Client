@@ -21,8 +21,8 @@ export class UserService {
     return httpOptions;
   }
 
-  registerUser(user): Observable<User> {
-    let headers = new HttpHeaders();
+  registerUser(user: User): Observable<User> {
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post<User>(`${environment.apiUrl}/user/register`, user, {
       headers
@@ -36,14 +36,14 @@ export class UserService {
     );
   }
 
-  deleteUser() {
+  deleteUser(id: string) {
     return this.http.delete<User>(
-      `${environment.apiUrl}/user/delete`,
+      `${environment.apiUrl}/user/delete/${id}`,
       this.getHeaders()
     );
   }
 
-  updateUser(user) {
+  updateUser(user: User) {
     return this.http.put<User>(
       `${environment.apiUrl}/user/update`,
       user,

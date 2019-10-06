@@ -11,8 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  name: string;
-  username: string;
+  fullName: string;
   email: string;
   password: string;
 
@@ -27,10 +26,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onRegisterSubmit() {
-    let user = {
-      name: this.name,
+    const user = {
+      fullName: this.fullName,
       email: this.email,
-      username: this.username,
       password: this.password
     };
 
@@ -54,7 +52,7 @@ export class RegisterComponent implements OnInit {
 
     // Register User
     this.userService.registerUser(user).subscribe(data => {
-      if (data.success) {
+      if (data.msg === 'success') {
         this.flashMessageService.show('You are now registered', {
           cssClass: 'alert-success',
           timeout: 3000

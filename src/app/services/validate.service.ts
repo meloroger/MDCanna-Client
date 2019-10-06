@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -6,19 +7,14 @@ import { Injectable } from '@angular/core';
 export class ValidateService {
   constructor() {}
 
-  validateRegister(user) {
+  validateRegister(user: User) {
     if (
-      user.name == undefined ||
-      user.email == undefined ||
-      user.username == undefined ||
-      user.password == undefined
+      user.fullName === undefined ||
+      user.email === undefined ||
+      user.password === undefined
     ) {
       return false;
-    } else if (
-      user.name.length < 3 ||
-      user.username.length < 3 ||
-      user.password.length < 6
-    ) {
+    } else if (user.fullName.length < 3 || user.password.length < 6) {
       return false;
     } else {
       return true;
