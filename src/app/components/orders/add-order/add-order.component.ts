@@ -3,7 +3,6 @@ import { OrderService } from 'src/app/services/order.service';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/item.service';
 import { AuthService } from 'src/app/services/auth.service';
-import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-add-order',
@@ -32,7 +31,6 @@ export class AddOrderComponent implements OnInit {
 
     console.log(user);
     const order = {
-      id: uuid.v4(),
       itemId: this.itemId,
       userId: user.id,
       quantity: this.quantity,

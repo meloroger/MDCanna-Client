@@ -23,21 +23,18 @@ export class OrderService {
   }
 
   getOrders(): Observable<Order[]> {
-    console.log('getOrders fired off..');
     return this.http
       .get<Order[]>(`${environment.apiUrl}/order/all`, this.getHeaders())
       .pipe();
   }
 
   createOrder(order: Order) {
-    console.log('orderService fired off..');
     if (order !== undefined) {
       this.sendOrder(order).subscribe();
     }
   }
 
   private sendOrder(order: Order): Observable<Order> {
-    console.log('order sent', order);
     return this.http
       .post<Order>(
         `${environment.apiUrl}/order/create`,
