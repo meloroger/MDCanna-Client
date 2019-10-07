@@ -1,5 +1,5 @@
 export class Order {
-  id: string;
+  id?: string;
   itemId: string;
   quantity: number;
   complete: boolean;
