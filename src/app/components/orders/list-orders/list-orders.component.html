@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="orderVM$ | async as vm">
   <div class="row">
     <div class="col">
       <div id="main-btns">
@@ -16,10 +16,9 @@
         </div>
 
         <app-order
-          *ngFor="let order of orders"
+          *ngFor="let order of vm.orders"
           [order]="order"
-          (deleteOrder)="deleteOrder($event)"
-          (passUpdateOrder)="updateOrder($event)"
+          (click)="selectOrder(order)"
         >
         </app-order>
 

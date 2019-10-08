@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div *ngIf="items$ | async as items" class="jumbotron">
   <h2 class="page-header">Update Order</h2>
   <form (submit)="onUpdateOrder()">
     <div class="form-group">

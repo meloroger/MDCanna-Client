@@ -23,6 +23,9 @@ import { OrderComponent } from './components/orders/order/order.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { UpdateOrderComponent } from './components/orders/update-order/update-order.component';
 import { StockMovementsComponent } from './components/orders/stock-movements/stock-movements.component';
+import { OrderFacade } from './facades/order.facade';
+import { ItemFacade } from './facades/item.facade';
+import { ItemService } from './services/item.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,15 @@ import { StockMovementsComponent } from './components/orders/stock-movements/sto
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard, OrderService],
+  providers: [
+    ValidateService,
+    AuthService,
+    AuthGuard,
+    OrderService,
+    OrderFacade,
+    ItemService,
+    ItemFacade
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

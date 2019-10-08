@@ -28,20 +28,20 @@ export class OrderService {
       .pipe();
   }
 
-  createOrder(order: Order) {
+  /* createOrder(order: Order) {
     if (order !== undefined) {
       this.sendOrder(order).subscribe();
     }
-  }
+  } */
 
-  private sendOrder(order: Order): Observable<Order> {
+  createOrder(order: Order): Observable<Order> {
     return this.http
       .post<Order>(
         `${environment.apiUrl}/order/create`,
         order,
         this.getHeaders()
       )
-      .pipe();
+      .pipe(tap(data => console.log(data)));
   }
 
   deleteOrder(id: string): Observable<Order> {
@@ -52,7 +52,6 @@ export class OrderService {
   }
 
   updateOrder(order: Order): Observable<Order> {
-    console.log('orderService..');
     return this.http.put<Order>(
       `${environment.apiUrl}/order/update`,
       order,

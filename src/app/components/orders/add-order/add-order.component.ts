@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/services/order.service';
-import { Item } from 'src/app/model/item.model';
-import { ItemService } from 'src/app/services/item.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { OrderFacade } from 'src/app/facades/order.facade';
+import { ItemFacade } from 'src/app/facades/item.facade';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-order',
@@ -13,15 +12,13 @@ export class AddOrderComponent implements OnInit {
   id: string;
   itemId: string;
   quantity: number;
-  items: Item[];
+  items$ = this.itemFacade.items$;
 
   constructor(
-    private orderService: OrderService,
-    private itemService: ItemService,
-    private authService: AuthService
-  ) {
-    this.itemService.fetchAllItems().subscribe(data => (this.items = data));
-  }
+    private orderFacade: OrderFacade,
+    private itemFacade: ItemFacade,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -38,6 +35,7 @@ export class AddOrderComponent implements OnInit {
       stockMovements: []
     };
     console.log(order);
-    this.orderService.createOrder(order);
+    this.orderFacade.createOrder(order);
+    this.router.navigate(['/dashboard']);
   }
 }
