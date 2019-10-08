@@ -63,10 +63,6 @@
 </div>
 <app-update-order
   *ngIf="showUpdate"
-  [order]="order"
-  (updateOrder)="fwdUpdateOrder($event)"
+  (click)="selectOrder(order)"
 ></app-update-order>
-<app-stock-movements
-  *ngIf="showStockMovements"
-  [order]="order"
-></app-stock-movements>
+<app-stock-movements *ngIf="showStockMovements"></app-stock-movements>

@@ -23,28 +23,25 @@ export class OrderService {
   }
 
   getOrders(): Observable<Order[]> {
-    console.log('getOrders fired off..');
     return this.http
       .get<Order[]>(`${environment.apiUrl}/order/all`, this.getHeaders())
       .pipe();
   }
 
-  createOrder(order: Order) {
-    console.log('orderService fired off..');
+  /* createOrder(order: Order) {
     if (order !== undefined) {
       this.sendOrder(order).subscribe();
     }
-  }
+  } */
 
-  private sendOrder(order: Order): Observable<Order> {
-    console.log('order sent', order);
+  createOrder(order: Order): Observable<Order> {
     return this.http
       .post<Order>(
         `${environment.apiUrl}/order/create`,
         order,
         this.getHeaders()
       )
-      .pipe();
+      .pipe(tap(data => console.log(data)));
   }
 
   deleteOrder(id: string): Observable<Order> {
@@ -55,7 +52,6 @@ export class OrderService {
   }
 
   updateOrder(order: Order): Observable<Order> {
-    console.log('orderService..');
     return this.http.put<Order>(
       `${environment.apiUrl}/order/update`,
       order,

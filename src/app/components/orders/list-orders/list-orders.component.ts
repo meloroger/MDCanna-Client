@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/services/order.service';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Order } from 'src/app/model/order.model';
+import { OrderFacade } from 'src/app/facades/order.facade';
+import { Observable } from 'rxjs';
+import { OrderState } from 'src/app/facades/state/order-state.interface';
 
 @Component({
   selector: 'app-list-orders',
@@ -8,46 +10,13 @@ import { Order } from 'src/app/model/order.model';
   styleUrls: ['./list-orders.component.css']
 })
 export class ListOrdersComponent implements OnInit {
-  private orders: Order[];
+  orderVM$: Observable<OrderState> = this.orderFacade.vm$;
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderFacade: OrderFacade) {}
 
-  ngOnInit() {
-    this.populateOrders();
-  }
+  ngOnInit() {}
 
-  populateOrders() {
-    this.orderService.getOrders().subscribe(
-      data => {
-        console.log(data);
-        this.orders = data;
-      },
-      err => {
-        console.log(err.msg);
-      }
-    );
-  }
-
-  deleteOrder(id: string) {
-    this.orders = this.orders.filter(order => order.id !== id);
-
-    this.orderService.deleteOrder(id).subscribe();
-  }
-
-  updateOrder(updateOrder: Order) {
-    console.log('list-orders..', updateOrder);
-    this.orders.forEach(order => {
-      if (updateOrder.id === order.id) {
-        /** Todo add other fields for update */
-        order.itemId = updateOrder.itemId;
-        order.quantity = updateOrder.quantity;
-      }
-    });
-    console.log(this.orders);
-    try {
-      this.orderService.updateOrder(updateOrder).subscribe();
-    } catch (err) {
-      console.log(err);
-    }
+  selectOrder(order: Order) {
+    return this.orderFacade.selectOrder(order);
   }
 }

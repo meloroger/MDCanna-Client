@@ -5,12 +5,12 @@ import { AuthService } from './auth.service';
 import { Item } from '../model/item.model';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { StockMovement } from '../model/stock-movement.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  items: Item[];
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getHeaders(): { headers: HttpHeaders } {
@@ -24,41 +24,30 @@ export class ItemService {
   }
 
   fetchAllItems(): Observable<Item[]> {
-    return this.http
-      .get<Item[]>(`${environment.apiUrl}/items/all`, this.getHeaders())
-      .pipe(tap(data => (this.items = data)));
+    return this.http.get<Item[]>(
+      `${environment.apiUrl}/items/all`,
+      this.getHeaders()
+    );
   }
 
-  createItem(stockMovement) {
-    this.sendItemToDb(stockMovement).subscribe();
-  }
-
-  private sendItemToDb(stockMovement): Observable<any> {
+  createItem(item: Item): Observable<Item> {
     return this.http
-      .post<any>(
-        `${environment.apiUrl}/items/create`,
-        stockMovement,
-        this.getHeaders()
-      )
+      .post<Item>(`${environment.apiUrl}/items/create`, item, this.getHeaders())
       .pipe();
   }
 
-  deleteItem(item) {
-    return this.http.delete<any>(
+  deleteItem(id: string): Observable<Item> {
+    return this.http.delete<Item>(
       `${environment.apiUrl}/items/delete`,
       this.getHeaders()
     );
   }
 
-  updateItem(item) {
-    return this.http.put<any>(
+  updateItem(item: Item): Observable<Item> {
+    return this.http.put<Item>(
       `${environment.apiUrl}/items/update`,
       item,
       this.getHeaders()
     );
-  }
-
-  getItems() {
-    return this.items;
   }
 }

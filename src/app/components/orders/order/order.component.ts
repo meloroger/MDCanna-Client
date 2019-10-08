@@ -1,26 +1,22 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Order } from 'src/app/model/order.model';
-import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+import { OrderFacade } from 'src/app/facades/order.facade';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
-  @Input() order: Order;
-  @Output() deleteOrder: EventEmitter<string> = new EventEmitter();
-  @Output() passUpdateOrder: EventEmitter<Order> = new EventEmitter();
+export class OrderComponent {
   showUpdate = false;
   showStockMovements = false;
+  @Input() order: Order;
 
-  constructor(private orderService: OrderService, private router: Router) {}
-
-  ngOnInit() {}
+  constructor(private orderFacade: OrderFacade) {}
 
   onDeleteOrder(id: string) {
-    this.deleteOrder.emit(id);
+    this.orderFacade.deleteOrder(id);
   }
 
   closeExpanded() {
@@ -34,11 +30,5 @@ export class OrderComponent implements OnInit {
 
   toggleStockMovements() {
     this.showStockMovements = !this.showStockMovements;
-  }
-
-  fwdUpdateOrder(order: Order) {
-    console.log('order component..');
-    this.passUpdateOrder.emit(order);
-    this.showUpdate = false;
   }
 }
