@@ -28,12 +28,6 @@ export class OrderService {
       .pipe();
   }
 
-  /* createOrder(order: Order) {
-    if (order !== undefined) {
-      this.sendOrder(order).subscribe();
-    }
-  } */
-
   createOrder(order: Order): Observable<Order> {
     return this.http
       .post<Order>(

@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ValidateService } from 'src/app/services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   fullName: string;
   email: string;
   password: string;
@@ -19,11 +18,8 @@ export class RegisterComponent implements OnInit {
     private validateService: ValidateService,
     private flashMessageService: FlashMessagesService,
     private userService: UserService,
-    private authService: AuthService,
     private router: Router
   ) {}
-
-  ngOnInit() {}
 
   onRegisterSubmit() {
     const user = {

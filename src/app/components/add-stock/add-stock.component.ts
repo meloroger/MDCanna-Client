@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/item.service';
-import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-add-stock',
@@ -17,15 +16,18 @@ export class AddStockComponent implements OnInit {
   constructor(
     private stockService: StockService,
     private itemService: ItemService
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.getItems();
+  }
+
+  getItems(): void {
     this.itemService.fetchAllItems().subscribe(data => (this.items = data));
   }
 
-  ngOnInit() {}
-
-  onStockSubmit() {
+  onStockSubmit(): void {
     const stockMove = {
-      id: uuid.v4(),
       itemId: this.itemId,
       quantity: this.quantity
     };

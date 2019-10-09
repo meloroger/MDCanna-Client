@@ -1,4 +1,5 @@
-export class StockMovement {
-  id: string;
+export interface StockMovement {
+  id?: string;
   itemId: string;
+  quantity: number;
 }
