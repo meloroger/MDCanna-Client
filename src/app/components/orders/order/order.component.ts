@@ -15,20 +15,20 @@ export class OrderComponent {
 
   constructor(private orderFacade: OrderFacade) {}
 
-  onDeleteOrder(id: string) {
+  onDeleteOrder(id: string): void {
     this.orderFacade.deleteOrder(id);
   }
 
-  closeExpanded() {
+  closeExpanded(): void {
     this.showUpdate = false;
     this.showStockMovements = false;
   }
 
-  toggleUpdateOrder() {
+  toggleUpdateOrder(): void {
     this.showUpdate = !this.showUpdate;
   }
 
-  toggleStockMovements() {
+  toggleStockMovements(): void {
     this.showStockMovements = !this.showStockMovements;
   }
 }

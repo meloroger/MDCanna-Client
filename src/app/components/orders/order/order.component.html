@@ -61,8 +61,5 @@
     </table>
   </div>
 </div>
-<app-update-order
-  *ngIf="showUpdate"
-  (click)="selectOrder(order)"
-></app-update-order>
+<app-update-order *ngIf="showUpdate"></app-update-order>
 <app-stock-movements *ngIf="showStockMovements"></app-stock-movements>

@@ -8,6 +8,7 @@ import { Order } from 'src/app/model/order.model';
 import { Item } from 'src/app/model/item.model';
 import { OrderFacade } from 'src/app/facades/order.facade';
 import { ItemFacade } from 'src/app/facades/item.facade';
+import { StockMovement } from 'src/app/model/stock-movement.model';
 
 @Component({
   selector: 'app-update-order',
@@ -20,7 +21,7 @@ export class UpdateOrderComponent implements OnInit {
   items$ = this.itemFacade.items$;
   itemId: string;
   quantity: number;
-  stockMovements: object[];
+  stockMovements: StockMovement[];
 
   constructor(
     private itemFacade: ItemFacade,

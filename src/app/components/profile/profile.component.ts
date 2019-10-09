@@ -19,12 +19,11 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private authService: AuthService
-  ) {
-    this.user = this.authService.loadUser();
-    console.log(this.user);
-  }
+  ) {}
 
   ngOnInit() {
+    this.user = this.authService.loadUser();
+    console.log(this.user);
     /*  Todo: create Path to call one user from database */
   }
 
@@ -41,5 +40,6 @@ export class ProfileComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('user'));
     this.userService.deleteUser(user.id).subscribe();
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

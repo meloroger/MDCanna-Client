@@ -6,6 +6,8 @@ import { ValidateService } from 'src/app/services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { UserService } from 'src/app/services/user.service';
 import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -15,7 +17,7 @@ describe('RegisterComponent', () => {
   let mockUserService;
   let user: User;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     user = {
       id: '1',
       email: 'testUser@gmail.com',
@@ -23,6 +25,7 @@ describe('RegisterComponent', () => {
     };
 
     TestBed.configureTestingModule({
+      imports: [FormsModule, RouterTestingModule],
       declarations: [RegisterComponent],
       providers: [
         { provide: ValidateService, useValue: mockValidateService },
@@ -30,9 +33,6 @@ describe('RegisterComponent', () => {
         { provide: UserService, useValue: mockUserService }
       ]
     }).compileComponents();
-  }));
-
-  beforeEach(() => {
     mockValidateService = jasmine.createSpyObj([
       'validateRegister',
       'valdateEmail'
@@ -47,17 +47,5 @@ describe('RegisterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call all services', () => {
-    mockValidateService.validateRegister.and.returnValue(of(true));
-    mockValidateService.validateEmail.and.returnValue(of(true));
-    mockFlashMessageService.show.and.returnValue(of('You are now registered'));
-    mockUserService.registerUser.and.returnValue(of(user));
-
-    expect(mockValidateService.validateRegister).toHaveBeenCalled();
-    expect(mockValidateService.validateEmail).toHaveBeenCalled();
-    expect(mockFlashMessageService.show).toHaveBeenCalled();
-    expect(mockUserService.registerUser).toHaveBeenCalled();
   });
 });

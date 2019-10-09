@@ -3,14 +3,14 @@
   <p class="lead">Welcome to the #1 Medical Cannabis Supply Warehouse</p>
   <div id="top-btns">
     <a
-      *ngIf="!authService.loggedIn()"
+      *ngIf="!getAuthService().loggedIn()"
       [routerLink]="['/register']"
       class="btn btn-primary"
       >Register</a
     >
     <a [routerLink]="['/products']" class="btn btn-link">Products</a>
     <a
-      *ngIf="!authService.loggedIn()"
+      *ngIf="!getAuthService().loggedIn()"
       [routerLink]="['/login']"
       class="btn btn-info"
       >Login</a

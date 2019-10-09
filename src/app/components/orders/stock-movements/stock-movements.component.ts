@@ -10,18 +10,18 @@ import { Order } from 'src/app/model/order.model';
 })
 export class StockMovementsComponent implements OnInit {
   @Input() order: Order;
-  stockMovements: object[];
-  constructor(private stockService: StockService) {}
+  stockMovements: StockMovement[];
+  constructor(/* private stockService: StockService */) {}
 
   ngOnInit() {
-    this.getStockMovement();
+    //this.getStockMovement();
     //this.showStockMovements(this.order.id);
   }
 
-  getStockMovement() {
-    const { stockMovements } = this.order;
-    this.stockMovements = stockMovements;
-    /* console.log(stockMovements);
+  // getStockMovement() {
+  //const { stockMovements } = this.order;
+  //this.stockMovements = stockMovements;
+  /* console.log(stockMovements);
     this.stockService.fetchAllStockMovements().subscribe(
       data => {
         this.stockMovements = data;
@@ -29,8 +29,8 @@ export class StockMovementsComponent implements OnInit {
       err => console.log(err)
     );
  */
-    //this.showStockMovements(this.order.id);
-  }
+  //this.showStockMovements(this.order.id);
+  //}
 
   /*  showStockMovements(id: string) {
     console.log(this.stockMovements);
