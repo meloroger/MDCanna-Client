@@ -32,7 +32,7 @@ export class RegisterComponent {
     if (!this.validateService.validateRegister(user)) {
       this.flashMessageService.show('Please fill in all fields', {
         cssClass: 'alert-danger',
-        timeout: 3000
+        timeout: 1000
       });
       return false;
     }
@@ -41,7 +41,7 @@ export class RegisterComponent {
     if (!this.validateService.validateEmail(user.email)) {
       this.flashMessageService.show('Please use a valid email', {
         cssClass: 'alert-danger',
-        timeout: 3000
+        timeout: 1000
       });
       return false;
     }
@@ -51,13 +51,13 @@ export class RegisterComponent {
       if (data.msg === 'success') {
         this.flashMessageService.show('You are now registered', {
           cssClass: 'alert-success',
-          timeout: 3000
+          timeout: 1000
         });
         this.router.navigate(['/login']);
       } else {
         this.flashMessageService.show('Unsuccessful register process...', {
           cssClass: 'alert-danger',
-          timeout: 3000
+          timeout: 1000
         });
         this.router.navigate(['/register']);
       }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
@@ -39,13 +38,13 @@ export class LoginComponent implements OnInit {
         this.authService.storeUserData(data.token, validUser);
         this.flashMessagesService.show('You are now logged in', {
           cssClass: 'alert-success',
-          timeout: 5000
+          timeout: 1000
         });
         this.router.navigate(['/dashboard']);
       } else {
         this.flashMessagesService.show('Please try again', {
           cssClass: 'alert-danger',
-          timeout: 5000
+          timeout: 1000
         });
         this.router.navigate(['/login']);
       }

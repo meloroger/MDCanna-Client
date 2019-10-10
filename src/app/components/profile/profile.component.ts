@@ -27,19 +27,19 @@ export class ProfileComponent implements OnInit {
     /*  Todo: create Path to call one user from database */
   }
 
-  onUpdateSubmit() {
+  onUpdateSubmit(): void {
     const user = {
       fullName: this.fullName,
-      email: this.email,
-      password: this.password
+      email: this.email
     };
     this.userService.updateUser(user).subscribe();
   }
 
-  onDeleteAccount() {
+  onDeleteAccount(): void {
     const user = JSON.parse(localStorage.getItem('user'));
-    this.userService.deleteUser(user.id).subscribe();
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.userService.deleteUser(user.id).subscribe(__ => {
+      this.authService.logout();
+      this.router.navigate(['/']);
+    });
   }
 }

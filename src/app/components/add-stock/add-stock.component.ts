@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StockService } from '../../services/stock.service';
 import { Item } from 'src/app/model/item.model';
-import { ItemService } from 'src/app/services/item.service';
 import { StockFacade } from 'src/app/facades/state/stock.facade';
 import { ItemFacade } from 'src/app/facades/item.facade';
 import { Observable } from 'rxjs';
