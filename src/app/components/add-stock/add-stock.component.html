@@ -1,23 +1,24 @@
-<h2 class="page-header">Add Stock</h2>
-<form (submit)="onStockSubmit()">
-  <div class="form-group">
-    <label>Product Name</label>
-    <select class="form-control" [(ngModel)]="itemId" name="itemId">
-      <option selected>Choose your Product</option>
-      <option *ngFor="let item of items" value="{{ item.id }}">{{
-        item.name
-      }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Quantity</label>
-    <input
-      type="number"
-      [(ngModel)]="quantity"
-      name="quantity"
-      class="form-control"
-    />
-  </div>
-
-  <input type="submit" class="btn btn-primary" value="submit" />
-</form>
+<ng-container *ngIf="items$ | async as items">
+  <h2 class="page-header">Add Stock</h2>
+  <form (submit)="onStockSubmit()">
+    <div class="form-group">
+      <label>Product Name</label>
+      <select class="form-control" [(ngModel)]="itemId" name="itemId">
+        <option selected>Choose your Product</option>
+        <option *ngFor="let item of items" value="{{ item.id }}">{{
+          item.name
+        }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input
+        type="number"
+        [(ngModel)]="quantity"
+        name="quantity"
+        class="form-control"
+      />
+    </div>
+    <input type="submit" class="btn btn-primary" value="submit" />
+  </form>
+</ng-container>

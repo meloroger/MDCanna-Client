@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from '../../services/stock.service';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/item.service';
+import { StockFacade } from 'src/app/facades/state/stock.facade';
+import { ItemFacade } from 'src/app/facades/item.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-stock',
@@ -9,13 +12,13 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./add-stock.component.css']
 })
 export class AddStockComponent implements OnInit {
-  items: Item[];
+  items$: Observable<Item[]>;
   itemId: string;
   quantity: number;
 
   constructor(
-    private stockService: StockService,
-    private itemService: ItemService
+    private stockFacade: StockFacade,
+    private itemFacade: ItemFacade
   ) {}
 
   ngOnInit() {
@@ -23,7 +26,7 @@ export class AddStockComponent implements OnInit {
   }
 
   getItems(): void {
-    this.itemService.fetchAllItems().subscribe(data => (this.items = data));
+    this.items$ = this.itemFacade.items$;
   }
 
   onStockSubmit(): void {
@@ -32,6 +35,6 @@ export class AddStockComponent implements OnInit {
       quantity: this.quantity
     };
     console.log(stockMove);
-    this.stockService.createStockMovement(stockMove);
+    this.stockFacade.createStockMovement(stockMove);
   }
 }
