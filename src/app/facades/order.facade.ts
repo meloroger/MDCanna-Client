@@ -80,7 +80,7 @@ export class OrderFacade {
     return this.orderService.getOrders();
   }
 
-  selectOrder(order: Order) {
+  selectOrder(order: Order): void {
     this.updateState({
       ...this.state,
       selectedOrder: order,
@@ -89,8 +89,8 @@ export class OrderFacade {
     console.log(this.state.selectedOrder);
   }
 
-  createOrder(order: Order) {
-    return this.orderService.createOrder(order).subscribe(ordr =>
+  createOrder(order: Order): void {
+    this.orderService.createOrder(order).subscribe(ordr =>
       this.updateState({
         ...this.state,
         orders: [...this.state.orders, ordr],
@@ -99,8 +99,8 @@ export class OrderFacade {
     );
   }
 
-  deleteOrder(id: string) {
-    return this.orderService.deleteOrder(id).subscribe(order => {
+  deleteOrder(id: string): void {
+    this.orderService.deleteOrder(id).subscribe(order => {
       this.updateState({
         ...this.state,
         orders: this.state.orders.filter(o => o.id !== id),
@@ -109,8 +109,8 @@ export class OrderFacade {
     });
   }
 
-  updateOrder(order: Order) {
-    return this.orderService.updateOrder(order).subscribe(ordr => {
+  updateOrder(order: Order): void {
+    this.orderService.updateOrder(order).subscribe(ordr => {
       this.updateState({
         ...this.state,
         orders: this.state.orders.filter(o => o.id !== order.id).concat(order),

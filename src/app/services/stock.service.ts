@@ -28,8 +28,8 @@ export class StockService {
     );
   }
 
-  createStockMovement(stockMovement: StockMovement) {
-    this.sendStockMovement(stockMovement).subscribe();
+  createStockMovement(stockMovement: StockMovement): Observable<StockMovement> {
+    return this.sendStockMovement(stockMovement);
   }
 
   private sendStockMovement(
@@ -44,14 +44,14 @@ export class StockService {
       .pipe();
   }
 
-  delteStockMovement() {
+  deleteStockMovement(id: string): Observable<StockMovement> {
     return this.http.delete<StockMovement>(
       `${environment.apiUrl}/stock/delete`,
       this.getHeaders()
     );
   }
 
-  updateStockMovement(stockMovement: StockMovement) {
+  updateStockMovement(stockMovement: StockMovement): Observable<StockMovement> {
     return this.http.put<StockMovement>(
       `${environment.apiUrl}/stock/update`,
       stockMovement,
